@@ -2546,7 +2546,7 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 	getFeedUrl = function(options, flPaging)
 	{
 		/** create the Twitter API URL based on the configuration options */
-		var url = ('https:' == document.location.protocol ? 'https:' : 'http:');
+		var url = 'https:';
 
 		if (options.searchParams)
 		{
@@ -2558,16 +2558,16 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 		{
 			if ('favorites' == options.list)
 			{
-				url += '//api.twitter.com/1/favorites/' + options.username + '.json?count=20';
+				url += '//api.twitter.com/1.1/favorites/' + options.username + '.json?count=20';
 			}
 			else
 			{
-				url += '//api.twitter.com/1/' + options.username + '/lists/' + options.list + '/statuses.json?per_page=20';
+				url += '//api.twitter.com/1.1/' + options.username + '/lists/' + options.list + '/statuses.json?per_page=20';
 			}
 		}
 		else
 		{
-			url += '//api.twitter.com/1/statuses/user_timeline.json?screen_name=' + options.username + '&count=20';
+			url += '//api.twitter.com/1.1/statuses/user_timeline.json?screen_name=' + options.username + '&count=20';
 			if (options._tweetFeedConfig.includeRetweets)
 				url += '&include_rts=true';
 		}
@@ -2585,9 +2585,9 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 	};
 	getRateLimitUrl = function(options)
 	{
-		var url = ('https:' == document.location.protocol ? 'https:' : 'http:');
+		var url = 'https:';
 
-		url += '//api.twitter.com/1/account/rate_limit_status.json?callback=?';
+		url += '//api.twitter.com/1.1/application/rate_limit_status.json?callback=?';
 
 		return url;
 	};
