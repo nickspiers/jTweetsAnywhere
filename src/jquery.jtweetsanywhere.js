@@ -233,6 +233,8 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 		/** setup the default options */
 		var options = $.extend(
 		{
+		    proxy: '/proxy',
+		    
 			/**
 			 * The user's name who's tweet feed or list feed is displayed. This
 			 * param is also used when a Twitter "Follow Button" is displayed. Usually
@@ -2519,7 +2521,7 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 			showLoadingIndicator(options);
 		}
 
-		options.tweetDataProvider(url, function(data)
+		options.tweetDataProvider(options, url, function(data)
 		{
 			if (data.error)
 			{
@@ -2534,7 +2536,7 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 	};
 	getRateLimit = function(options, callback)
 	{
-		options.rateLimitDataProvider(getRateLimitUrl(options), function(rateLimit)
+		options.rateLimitDataProvider(options, getRateLimitUrl(options), function(rateLimit)
 		{
 			options._stats.rateLimit = rateLimit;
 
@@ -2606,12 +2608,12 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 
 		return imageUrl;
 	};
-	defaultTweetDataProvider = function(url, callback)
+	defaultTweetDataProvider = function (options, url, callback)
 	{
-		$.getJSON(url, callback);
+	    $.getJSON(options.proxy, { url: encodeURIComponent(url) }, callback);
 	};
-	defaultRateLimitDataProvider = function(url, callback)
+	defaultRateLimitDataProvider = function(options, url, callback)
 	{
-		$.getJSON(url, callback);
+	    $.getJSON(options.proxy, { url: encodeURIComponent(url) }, callback);
 	};
 })(jQuery);
