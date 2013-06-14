@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>jTweetsAnywhere</id>
+    <version>0.1</version>
+    <authors>Web Station, Inc</authors>
+    <owners>Web Station, Inc</owners>
+    <projectUrl>http://www.webstationinc.com</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>our fork of jTweetsAnywhere</description>
+    <releaseNotes>initial release</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>Twitter</tags>
+  </metadata>
+    <files>
+        <file src="..\src\jquery.jtweetsanywhere.css" target="content\Content" />
+        <file src="..\src\jquery.jtweetsanywhere.js" target="content\Scripts" />
+        <file src="**" />
+    </files>
+</package>
