@@ -2439,7 +2439,7 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 
     		getRateLimitedData(options, false, getFeedUrl(options, true), function(data, options)
     		{
-    			var tweets = data.results || data;
+    			var tweets = data.results || data.statuses || data;
 
     			if (tweets.length == 0)
     			{
@@ -2552,9 +2552,8 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 
 		if (options.searchParams)
 		{
-			url += '//search.twitter.com/search.json?' +
-				((options.searchParams instanceof Array) ? options.searchParams.join('&') : options.searchParams) +
-				'&rpp=100';
+			url += '//api.twitter.com/1.1/search/tweets.json?' +
+				((options.searchParams instanceof Array) ? options.searchParams.join('&') : options.searchParams);
 		}
 		else if (options.list)
 		{
@@ -2574,12 +2573,12 @@ JTA_I18N.addResourceBundle('jTweetsAnywhere', 'en',
 				url += '&include_rts=true';
 		}
 
-		if (flPaging)
-		{
-			url +=
-				(options._tweetFeedConfig._maxId ? '&max_id=' + options._tweetFeedConfig._maxId : '') +
-				'&page=' + options._tweetFeedConfig._pageParam;
-		}
+		//if (flPaging)
+		//{
+		//	url +=
+		//		(options._tweetFeedConfig._maxId ? '&max_id=' + options._tweetFeedConfig._maxId : '') +
+		//		'&page=' + options._tweetFeedConfig._pageParam;
+		//}
 
 		url += '&callback=?';
 
